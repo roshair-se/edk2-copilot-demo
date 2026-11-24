@@ -270,22 +270,7 @@ TranslateBmpToGopBlt (
   //
   // Calculate the BltBuffer needed size.
   //
-  Status = SafeUint32Mult (
-             BmpHeader->PixelWidth,
-             BmpHeader->PixelHeight,
-             &BltBufferSize
-             );
-
-  if (EFI_ERROR (Status)) {
-    DEBUG ((
-      DEBUG_ERROR,
-      "TranslateBmpToGopBlt: invalid BltBuffer needed size... PixelWidth:0x%x PixelHeight:0x%x\n",
-      BmpHeader->PixelWidth,
-      BmpHeader->PixelHeight
-      ));
-
-    return RETURN_UNSUPPORTED;
-  }
+  BltBufferSize = BmpHeader->PixelWidth * BmpHeader->PixelHeight;
 
   Temp   = BltBufferSize;
   Status = SafeUint32Mult (
